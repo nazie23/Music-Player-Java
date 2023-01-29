@@ -9,3 +9,8 @@
 - **Why is this project of interest to you?**
   - This project is of interest to me because I love listen to music that matches my mood or current state of mind every minute of the day, therefore being able to create a set list of songs that I can add to on the go is very important to me. Most music streaming platforms seal this feature behind a paywall, so I'm interested in creating a program that can perform the same operations as a regular music streaming platform.
 
+***User Stories:***
+- As a user, I want to be able to view my current queue of songs
+- As a user, I want to be able to add a song to my queue
+- As a user, I want to be able to skip a song and play the next one
+- As a user, I want to be able to see my recently played/skipped songs
