@@ -21,8 +21,6 @@ public class QueueTest {
 
     @Test
     public void constructorTest() {
-        assertEquals(playlist.getQueue(), new ArrayList<>());
-        assertEquals(playlist.getRecentlyPlayed(), new ArrayList<>());
         assertEquals(playlist.getQueueLength(), 0);
         assertEquals(playlist.getRecentlyPlayedLength(), 0);
     }

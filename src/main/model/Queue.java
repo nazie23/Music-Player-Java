@@ -35,24 +35,14 @@ public class Queue {
         this.recentlyPlayed.remove(0);
     }
 
-    public ArrayList getQueue() {
-        ArrayList<String> printList = new ArrayList<>();
-
-        for (Song s : this.queue) {
-            printList.add(s.getTitle() + " by " + s.getArtist());
+    public void printQueue() {
+        if (queue.isEmpty()) {
+            System.out.println("The queue is empty!");
+        } else {
+            for (Song s : this.queue) {
+                System.out.println(s.getTitle() + " by " + s.getArtist());
+            }
         }
-
-        return printList;
-    }
-
-    public ArrayList getRecentlyPlayed() {
-        ArrayList<String> printList = new ArrayList<>();
-
-        for (Song s : this.recentlyPlayed) {
-            printList.add(s.getTitle() + " by " + s.getArtist());
-        }
-
-        return printList;
     }
 
     public int getQueueLength() {

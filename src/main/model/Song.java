@@ -14,31 +14,19 @@ public class Song {
     }
 
     public void toggleLike() {
-        this.liked = this.liked != true;
+        this.liked = !this.liked;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getArtist() {
         return artist;
     }
 
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
     public int getDuration() {
         return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 
     public boolean isLiked() {

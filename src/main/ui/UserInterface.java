@@ -32,7 +32,7 @@ public class UserInterface {
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void handleInput(String op, Scanner s, Queue q) {
         switch (op) {
-            case "view": q.getQueue();
+            case "view": q.printQueue();
                 break;
             case "add":
                 System.out.println("Please enter the name of the song you would like to add: ");
