@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class QueueTest {
     private Queue playlist;
@@ -42,9 +42,11 @@ public class QueueTest {
         playlist.addToQueue(s2);
         assertEquals(playlist.getQueueLength(), 2);
 
-        playlist.removeFromQueue("Song1");
+        assertTrue(playlist.removeFromQueue("Song1"));
         assertEquals(playlist.getQueueLength(), 1);
         assertEquals(playlist.getRecentlyPlayedLength(), 0);
+
+        assertFalse(playlist.removeFromQueue("Song3"));
     }
 
     @Test

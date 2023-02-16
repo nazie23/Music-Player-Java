@@ -15,12 +15,17 @@ public class Queue {
         this.queue.add(song);
     }
 
-    public void removeFromQueue(String name) {
+    public boolean removeFromQueue(String name) {
+        boolean found = false;
+
         for (Song s : queue) {
             if (s.getTitle() == name) {
+                found = true;
                 this.queue.remove(s);
             }
         }
+
+        return found;
     }
 
     // REQUIRES: queue.size() > 0
