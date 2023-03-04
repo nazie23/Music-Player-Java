@@ -14,3 +14,5 @@
 - As a user, I want to be able to add a song to my queue
 - As a user, I want to be able to skip a song and play the next one
 - As a user, I want to be able to see my recently played/skipped songs
+- As a user, I want to be able to save the state of my user player to file if I choose to
+- As a user, I want to be given the option to load a saved queue/playlist
