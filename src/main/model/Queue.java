@@ -1,14 +1,28 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class Queue {
+public class Queue implements Writable {
+    private String name;
     private ArrayList<Song> queue;
     private ArrayList<Song> recentlyPlayed;
 
-    public Queue() {
-        queue = new ArrayList<>();
-        recentlyPlayed = new ArrayList<>();
+    public Queue(String name) {
+        this.name = name;
+        this.queue = new ArrayList<>();
+        this.recentlyPlayed = new ArrayList<>();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addToQueue(Song song) {
@@ -56,6 +70,36 @@ public class Queue {
 
     public int getRecentlyPlayedLength() {
         return recentlyPlayed.size();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("queue", queueToJson());
+        json.put("recentlyPlayed", recentToJson());
+
+        return json;
+    }
+
+    private JSONArray queueToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Song s : this.queue) {
+            jsonArray.put(s.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    private JSONArray recentToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Song s : this.recentlyPlayed) {
+            jsonArray.put(s.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

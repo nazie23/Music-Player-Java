@@ -14,7 +14,7 @@ public class QueueTest {
 
     @BeforeEach
     public void setup() {
-        playlist = new Queue();
+        playlist = new Queue("Untitled");
         s1 = new Song("Song1", "Anon", 145);
         s2 = new Song("Song2", "Anon", 190);
     }
