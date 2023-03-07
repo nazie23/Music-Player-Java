@@ -14,15 +14,17 @@ public class UserInterface {
     private Queue playlist;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    boolean runProgram;
 
     public UserInterface() {
         userInput = new Scanner(System.in);
         playlist = new Queue("Untitled");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+        runProgram = true;
     }
 
-    public void options(boolean runProgram) {
+    public void options() {
         while (runProgram) {
             System.out.println("Please select an option from the following:"
                     + "\n'save' to save the current playlist"
@@ -60,9 +62,9 @@ public class UserInterface {
                 break;
             case "prev": playlist.prevSong();
                 break;
-            case "quit": options(false);
+            case "quit": runProgram = false;
                 break;
-            default: options(true);
+            default: runProgram = true;
                 break;
         }
 

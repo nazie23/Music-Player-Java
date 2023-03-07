@@ -47,11 +47,9 @@ public class Queue implements Writable {
         boolean found = false;
 
         for (Song s : queue) {
-            while (!found) {
-                if (s.getTitle() == name) {
-                    found = true;
-                    this.queue.remove(s);
-                }
+            if (s.getTitle() == name) {
+                found = true;
+                this.queue.remove(s);
             }
         }
 
