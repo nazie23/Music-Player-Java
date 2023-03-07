@@ -42,8 +42,23 @@ public class JsonReader {
     // EFFECTS: parses queue from JSON object and returns it
     private Queue parseQueue(JSONObject jsonObject) {
         Queue queue = new Queue(jsonObject.getString("name"));
+        addSongsRecentlyPlayed(queue, jsonObject);
         addSongs(queue, jsonObject);
         return queue;
+    }
+
+    // MODIFIES: queue
+    // EFFECTS: parses songs from JSON object and adds them to queue
+    private void addSongsRecentlyPlayed(Queue queue, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("recentlyPlayed");
+        for (Object json : jsonArray) {
+            JSONObject nextSong = (JSONObject) json;
+            addSong(queue, nextSong);
+        }
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            queue.skipSong();
+        }
     }
 
     // MODIFIES: queue

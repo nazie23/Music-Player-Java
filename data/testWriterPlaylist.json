@@ -1,0 +1,13 @@
+{
+    "recentlyPlayed": [{
+        "duration": 240,
+        "artist": "lyn",
+        "name": "wake up, get up, get out there"
+    }],
+    "name": "My playlist",
+    "queue": [{
+        "duration": 120,
+        "artist": "lyn",
+        "name": "life will change"
+    }]
+}
