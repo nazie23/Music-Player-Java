@@ -21,8 +21,10 @@ public class QueueTest {
 
     @Test
     public void constructorTest() {
+        playlist.setName("My playlist");
         assertEquals(playlist.getQueueLength(), 0);
         assertEquals(playlist.getRecentlyPlayedLength(), 0);
+        assertEquals("My playlist", playlist.getName());
     }
 
     @Test

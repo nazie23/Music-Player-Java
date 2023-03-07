@@ -50,7 +50,7 @@ public class UserInterface {
                 break;
             case "name": changeName();
                 break;
-            case "view": playlist.printQueue();
+            case "view": printQueue();
                 break;
             case "add": addSong();
                 break;
@@ -92,6 +92,16 @@ public class UserInterface {
         System.out.println("Please enter the new name of the playlist:\t");
         String name = userInput.nextLine();
         playlist.setName(name);
+    }
+
+    public void printQueue() {
+        if (playlist.getQueue().isEmpty()) {
+            System.out.println("The queue is empty!");
+        } else {
+            for (Song s : playlist.getQueue()) {
+                System.out.println(s.getTitle() + " by " + s.getArtist());
+            }
+        }
     }
 
     public void addSong() {

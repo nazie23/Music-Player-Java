@@ -21,6 +21,10 @@ public class Queue implements Writable {
         return this.name;
     }
 
+    public ArrayList<Song> getQueue() {
+        return this.queue;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -52,16 +56,6 @@ public class Queue implements Writable {
     public void prevSong() {
         this.queue.add(0, this.recentlyPlayed.get(0));
         this.recentlyPlayed.remove(0);
-    }
-
-    public void printQueue() {
-        if (queue.isEmpty()) {
-            System.out.println("The queue is empty!");
-        } else {
-            for (Song s : this.queue) {
-                System.out.println(s.getTitle() + " by " + s.getArtist());
-            }
-        }
     }
 
     public int getQueueLength() {
