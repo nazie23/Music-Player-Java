@@ -16,6 +16,8 @@ public class Song implements Writable {
         this.liked = false;
     }
 
+    // MODIFIES: liked
+    // EFFECTS: toggles the state of liked
     public void toggleLike() {
         this.liked = !this.liked;
     }
