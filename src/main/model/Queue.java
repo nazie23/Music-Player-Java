@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Queue implements Writable {
     private String name;
@@ -46,10 +47,10 @@ public class Queue implements Writable {
     public boolean removeFromQueue(String name) {
         boolean found = false;
 
-        for (Song s : queue) {
-            if (s.getTitle() == name) {
+        for (int i = 0; i < queue.size(); i++) {
+            if (name.equals(queue.get(i).getTitle())) {
                 found = true;
-                this.queue.remove(s);
+                this.queue.remove(queue.get(i));
             }
         }
 

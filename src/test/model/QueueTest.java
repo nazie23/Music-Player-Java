@@ -49,6 +49,12 @@ public class QueueTest {
         assertEquals(playlist.getRecentlyPlayedLength(), 0);
 
         assertFalse(playlist.removeFromQueue("Song3"));
+        assertEquals(playlist.getQueueLength(), 1);
+        assertEquals(playlist.getRecentlyPlayedLength(), 0);
+
+        assertTrue(playlist.removeFromQueue("Song2"));
+        assertEquals(playlist.getQueueLength(), 0);
+        assertEquals(playlist.getRecentlyPlayedLength(), 0);
     }
 
     @Test
