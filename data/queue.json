@@ -1,9 +1,20 @@
 {
-    "recentlyPlayed": [],
-    "name": "Untitled",
-    "queue": [{
+    "recentlyPlayed": [{
         "duration": 120,
-        "artist": "lyn",
-        "name": "life will change"
-    }]
+        "artist": "j",
+        "name": "hi"
+    }],
+    "name": "Untitled",
+    "queue": [
+        {
+            "duration": 120,
+            "artist": "m",
+            "name": "m"
+        },
+        {
+            "duration": 120,
+            "artist": "s",
+            "name": "s"
+        }
+    ]
 }
