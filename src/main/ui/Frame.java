@@ -92,6 +92,7 @@ public class Frame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(500, 400);
+        this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(new Color(235, 228, 199));
     }
 
