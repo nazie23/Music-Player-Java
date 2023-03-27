@@ -2,12 +2,16 @@ package ui;
 
 import model.Queue;
 import model.Song;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Objects;
 
 public class Frame extends JFrame implements ActionListener {
@@ -28,6 +32,9 @@ public class Frame extends JFrame implements ActionListener {
     private JButton submit;
 
     private Queue playlist;
+    private static final String JSON_STORE = "./data/queue.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     public Frame() {
         instantiateAddButton();
@@ -48,6 +55,8 @@ public class Frame extends JFrame implements ActionListener {
         this.setVisible(true);
 
         playlist = new Queue("Untitled");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     @Override
@@ -64,13 +73,16 @@ public class Frame extends JFrame implements ActionListener {
             }
             displayCurrentSong();
         } else if (e.getSource() == prevSong) {
-            //
+            playlist.prevSong();
+            displayCurrentSong();
         } else if (e.getSource() == skipSong) {
-            //
+            playlist.skipSong();
+            displayCurrentSong();
         } else if (e.getSource() == savePlaylist) {
-            //
+            saveQueue();
         } else if (e.getSource() == loadPlaylist) {
-            //
+            loadQueue();
+            displayCurrentSong();
         }
     }
 
@@ -243,8 +255,27 @@ public class Frame extends JFrame implements ActionListener {
 
     private void removeSong() {
         String tempName = name.getText();
-
         playlist.removeFromQueue(tempName);
+    }
+
+    private void saveQueue() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(playlist);
+            jsonWriter.close();
+            System.out.println("Saved " + playlist.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    private void loadQueue() {
+        try {
+            playlist = jsonReader.read();
+            System.out.println("Loaded " + playlist.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }
