@@ -40,21 +40,21 @@ public class SplashScreen extends JFrame {
     private void addProgressBar() {
         progressBar = new JProgressBar();
         progressBar.setBounds(10, 160, 280, 15);
-        progressBar.setBorderPainted(true);
-        progressBar.setStringPainted(true);
         progressBar.setBackground(Color.WHITE);
         progressBar.setForeground(Color.BLACK);
+        progressBar.setBorderPainted(true);
+        progressBar.setStringPainted(true);
         progressBar.setValue(0);
         this.add(progressBar);
     }
 
     private void runningProgressBar() {
-        int i = 0;//Creating an integer variable and initializing it to 0
+        int i = 0;
 
         while (i <= 100) {
             try {
-                Thread.sleep(25);//Pausing execution for 50 milliseconds
-                progressBar.setValue(i);//Setting value of Progress Bar
+                Thread.sleep(25);
+                progressBar.setValue(i);
                 i++;
                 if (i == 100) {
                     this.dispose();

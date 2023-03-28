@@ -25,6 +25,8 @@ public class Frame extends JFrame implements ActionListener {
     private JButton skipSong;
     private JButton savePlaylist;
     private JButton loadPlaylist;
+    private JButton viewQueue;
+    private ViewQueueScreen viewQueueScreen;
 
     private JTextField name;
     private JTextField artist;
@@ -43,6 +45,7 @@ public class Frame extends JFrame implements ActionListener {
         instantiatePrevButton();
         instantiateSaveButton();
         instantiateLoadButton();
+        instantiateViewQueueButton();
 
         ImageIcon image = new ImageIcon(Objects.requireNonNull(MainGUI.class.getResource("images/logo.png")));
         this.setIconImage(image.getImage());
@@ -71,7 +74,6 @@ public class Frame extends JFrame implements ActionListener {
             } else {
                 removeSong();
             }
-            displayCurrentSong();
         } else if (e.getSource() == prevSong) {
             playlist.prevSong();
             displayCurrentSong();
@@ -82,7 +84,8 @@ public class Frame extends JFrame implements ActionListener {
             saveQueue();
         } else if (e.getSource() == loadPlaylist) {
             loadQueue();
-            displayCurrentSong();
+        } else if (e.getSource() == viewQueue) {
+            viewQueue();
         }
     }
 
@@ -170,6 +173,15 @@ public class Frame extends JFrame implements ActionListener {
         loadPlaylist.setFocusable(false);
     }
 
+    private void instantiateViewQueueButton() {
+        viewQueue = new JButton("View Queue");
+        viewQueue.setBounds(370, 200, 85, 40);
+        viewQueue.setBackground(Color.white);
+        viewQueue.setBorder(border);
+        viewQueue.addActionListener(this);
+        viewQueue.setFocusable(false);
+    }
+
     private void instantiateLabels() {
         title = new JLabel("Music Player");
         title.setBounds(190, 0, 150, 50);
@@ -178,33 +190,6 @@ public class Frame extends JFrame implements ActionListener {
         currentSong = new JLabel("No song is currently playing.", JLabel.CENTER);
         currentSong.setBounds(150, 100, 200, 50);
         currentSong.setFont(new Font("Arial", Font.PLAIN, 12));
-    }
-
-    private void buildFrame() {
-        this.add(title);
-        this.add(currentSong);
-
-        this.add(addSong);
-        this.add(removeSong);
-        this.add(skipSong);
-        this.add(prevSong);
-        this.add(savePlaylist);
-        this.add(loadPlaylist);
-
-        this.add(name);
-        this.add(artist);
-        this.add(duration);
-        this.add(submit);
-    }
-
-    private void displayCurrentSong() {
-        if (playlist.getQueue().isEmpty()) {
-            currentSong.setText("No song is currently playing.");
-        } else {
-            Song curSong = playlist.getQueue().get(0);
-            currentSong.setText("<html>" + curSong.getTitle() + " by " + curSong.getArtist()
-                    + " <br> " + curSong.getDuration() + " seconds </html>");
-        }
     }
 
     private void buildTextFields() {
@@ -229,6 +214,34 @@ public class Frame extends JFrame implements ActionListener {
         submit.addActionListener(this);
     }
 
+    private void buildFrame() {
+        this.add(title);
+        this.add(currentSong);
+
+        this.add(addSong);
+        this.add(removeSong);
+        this.add(skipSong);
+        this.add(prevSong);
+        this.add(savePlaylist);
+        this.add(loadPlaylist);
+        this.add(viewQueue);
+
+        this.add(name);
+        this.add(artist);
+        this.add(duration);
+        this.add(submit);
+    }
+
+    private void displayCurrentSong() {
+        if (playlist.getQueue().isEmpty()) {
+            currentSong.setText("No song is currently playing.");
+        } else {
+            Song curSong = playlist.getQueue().get(0);
+            currentSong.setText("<html>" + curSong.getTitle() + " by " + curSong.getArtist()
+                    + " <br> " + curSong.getDuration() + " seconds </html>");
+        }
+    }
+
     
     // Actions
     private void getAddSongAttributes() {
@@ -245,6 +258,11 @@ public class Frame extends JFrame implements ActionListener {
         Song tempSong = new Song(tempName, tempArtist, tempDuration);
 
         playlist.addToQueue(tempSong);
+        name.setVisible(false);
+        artist.setVisible(false);
+        duration.setVisible(false);
+        submit.setVisible(false);
+        displayCurrentSong();
     }
 
     private void getRemoveSongAttributes() {
@@ -257,6 +275,9 @@ public class Frame extends JFrame implements ActionListener {
     private void removeSong() {
         String tempName = name.getText();
         playlist.removeFromQueue(tempName);
+        name.setVisible(false);
+        submit.setVisible(false);
+        displayCurrentSong();
     }
 
     private void saveQueue() {
@@ -277,6 +298,11 @@ public class Frame extends JFrame implements ActionListener {
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
+        displayCurrentSong();
+    }
+
+    private void viewQueue() {
+        viewQueueScreen = new ViewQueueScreen(playlist);
     }
 
 }

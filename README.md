@@ -16,3 +16,11 @@
 - As a user, I want to be able to see my recently played/skipped songs
 - As a user, I want to be able to save the state of my user player to file if I choose to
 - As a user, I want to be given the option to load a saved queue/playlist
+
+
+***Instructions for Grader:***
+- You can generate the first required action related to adding Songs to the Queue by clicking the plus icon, which allows the user to type in the name, artist and duration (which must be an integer; if it is not an integer, the program will produce an error and the song will not be added to the queue) of the song; once they press submit, it will be in the queue. It can be viewed by using the skip button.
+- You can generate the second required action related to adding Songs to the Queue by clicking the "View Queue" button, which brings up a separate window that allows the user to view all the songs currently in the queue.
+- You can locate my visual component as soon as the program is run; a splash screen with a loading bar is displayed with the logo of the music player and a welcome message.
+- You can save the state of my application by pressing the "Save" button.
+- You can reload the state of my application by closing the window, and pressing the "Load" button after rerunning it.
