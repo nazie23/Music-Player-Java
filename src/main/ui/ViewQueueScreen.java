@@ -20,6 +20,8 @@ public class ViewQueueScreen extends JFrame {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a simple window from which the current state of the queue can be viewed
     private void buildFrame() {
         this.setTitle("Queue");
         this.setLayout(null);
@@ -31,6 +33,9 @@ public class ViewQueueScreen extends JFrame {
         this.setIconImage(image.getImage());
     }
 
+    // MODIFIES: sb, scroll, this
+    // EFFECTS: adds songs from the queue to a string builder, which is used to instantiate a
+    // scroll pane
     private void initializeList() {
         sb = new StringBuilder();
         sb.append("<html>");

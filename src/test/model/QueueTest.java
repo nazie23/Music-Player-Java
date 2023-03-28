@@ -25,6 +25,7 @@ public class QueueTest {
         assertEquals(playlist.getQueueLength(), 0);
         assertEquals(playlist.getRecentlyPlayedLength(), 0);
         assertEquals("My playlist", playlist.getName());
+        assertEquals(new ArrayList<>(), playlist.getQueue());
     }
 
     @Test

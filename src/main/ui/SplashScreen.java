@@ -16,6 +16,8 @@ public class SplashScreen extends JFrame {
         runningProgressBar();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a simple window from which a splash screen will run before the main app
     private void buildFrame() {
         this.setLayout(null);
         this.setResizable(false);
@@ -24,6 +26,8 @@ public class SplashScreen extends JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    // MODIFIES: logo, this
+    // EFFECTS: instantiates a welcome message with the app logo and adds it to the frame
     private void createLabel() {
         logo = new JLabel("Welcome to the Music Player!");
         ImageIcon temp = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/logo.png")));
@@ -37,6 +41,8 @@ public class SplashScreen extends JFrame {
         this.add(logo);
     }
 
+    // MODIFIES: progressBar, this
+    // EFFECTS: instantiates a progress bar and adds it to the frame
     private void addProgressBar() {
         progressBar = new JProgressBar();
         progressBar.setBounds(10, 160, 280, 15);
@@ -48,6 +54,8 @@ public class SplashScreen extends JFrame {
         this.add(progressBar);
     }
 
+    // MODIFIES: progressBar
+    // EFFECTS: runs the progress bar, which incrementally loads from 0% until it reaches 100%
     private void runningProgressBar() {
         int i = 0;
 

@@ -89,6 +89,8 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a simple window from which the main app will be run
     private void buildWindow() {
         this.setTitle("Music Player");
         this.setLayout(null);
@@ -99,6 +101,8 @@ public class Frame extends JFrame implements ActionListener {
         this.getContentPane().setBackground(new Color(235, 228, 199));
     }
 
+    // MODIFIES: addSong
+    // EFFECTS: creates an instance of a button that will be used to add a song
     private void instantiateAddButton() {
         ImageIcon temp = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/add.png")));
         Image plusImg = temp.getImage();
@@ -113,6 +117,8 @@ public class Frame extends JFrame implements ActionListener {
         addSong.setIcon(plus);
     }
 
+    // MODIFIES: removeSong
+    // EFFECTS: creates an instance of a button that will be used to remove a song
     private void instantiateRemoveButton() {
         ImageIcon temp = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/remove.png")));
         Image minusImg = temp.getImage();
@@ -127,6 +133,8 @@ public class Frame extends JFrame implements ActionListener {
         removeSong.setIcon(minus);
     }
 
+    // MODIFIES: skipSong
+    // EFFECTS: creates an instance of a button that will be used to skip a song
     private void instantiateSkipButton() {
         ImageIcon temp = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/skip.png")));
         Image skipImg = temp.getImage();
@@ -141,6 +149,8 @@ public class Frame extends JFrame implements ActionListener {
         skipSong.setIcon(skip);
     }
 
+    // MODIFIES: prevSong
+    // EFFECTS: creates an instance of a button that will be used to go back to a previous song
     private void instantiatePrevButton() {
         ImageIcon temp = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/previous.png")));
         Image prevImg = temp.getImage();
@@ -155,6 +165,9 @@ public class Frame extends JFrame implements ActionListener {
         prevSong.setIcon(prev);
     }
 
+    // MODIFIES: savePlaylist
+    // EFFECTS: creates an instance of a button that will be used to save the state of the
+    // application
     private void instantiateSaveButton() {
         savePlaylist = new JButton("Save");
         savePlaylist.setBounds(30, 220, 75, 50);
@@ -164,6 +177,9 @@ public class Frame extends JFrame implements ActionListener {
         savePlaylist.setFocusable(false);
     }
 
+    // MODIFIES: loadPlaylist
+    // EFFECTS: creates an instance of a button that will be used to load a saved state of the
+    // application
     private void instantiateLoadButton() {
         loadPlaylist = new JButton("Load");
         loadPlaylist.setBounds(30, 290, 75, 50);
@@ -173,6 +189,9 @@ public class Frame extends JFrame implements ActionListener {
         loadPlaylist.setFocusable(false);
     }
 
+    // MODIFIES: viewQueue
+    // EFFECTS: creates an instance of a button that will be used to view all the songs in the
+    // queue
     private void instantiateViewQueueButton() {
         viewQueue = new JButton("View Queue");
         viewQueue.setBounds(370, 200, 85, 40);
@@ -182,6 +201,9 @@ public class Frame extends JFrame implements ActionListener {
         viewQueue.setFocusable(false);
     }
 
+    // MODIFIES: title, currentSong
+    // EFFECTS: creates two labels; one that titles the app and one that displays the current
+    // song being played
     private void instantiateLabels() {
         title = new JLabel("Music Player");
         title.setBounds(190, 0, 150, 50);
@@ -192,6 +214,9 @@ public class Frame extends JFrame implements ActionListener {
         currentSong.setFont(new Font("Arial", Font.PLAIN, 12));
     }
 
+    // MODIFIES: name, artist, duration, submit
+    // EFFECTS: creates three text fields set an invisible that will be used when the user is
+    // trying to add or remove a song, as well as a submit button
     private void buildTextFields() {
         name = new JTextField();
         name.setBounds(140, 290, 75, 20);
@@ -214,6 +239,8 @@ public class Frame extends JFrame implements ActionListener {
         submit.addActionListener(this);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds all the created buttons, labels and text fields to the frame
     private void buildFrame() {
         this.add(title);
         this.add(currentSong);
@@ -232,6 +259,9 @@ public class Frame extends JFrame implements ActionListener {
         this.add(submit);
     }
 
+    // MODIFIES: currentSong
+    // EFFECTS: updates the currentSong label according to which song is currently at the front
+    // of the queue
     private void displayCurrentSong() {
         if (playlist.getQueue().isEmpty()) {
             currentSong.setText("No song is currently playing.");
@@ -242,8 +272,9 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
-    
-    // Actions
+
+    // MODIFIES: name, artist, duration, submit
+    // EFFECTS: sets the above labels/button to visible
     private void getAddSongAttributes() {
         name.setVisible(true);
         artist.setVisible(true);
@@ -251,6 +282,9 @@ public class Frame extends JFrame implements ActionListener {
         submit.setVisible(true);
     }
 
+    // MODIFIES: playlist, name, artist, duration, submit
+    // EFFECTS: adds a newly created song object to the queue and sets the above labels/button
+    // to invisible
     private void addSong() {
         String tempName = name.getText();
         String tempArtist = artist.getText();
@@ -265,6 +299,8 @@ public class Frame extends JFrame implements ActionListener {
         displayCurrentSong();
     }
 
+    // MODIFIES: name, artist, duration, submit
+    // EFFECTS: sets name and submit to visible, and artist and duration to invisible
     private void getRemoveSongAttributes() {
         name.setVisible(true);
         artist.setVisible(false);
@@ -272,6 +308,9 @@ public class Frame extends JFrame implements ActionListener {
         submit.setVisible(true);
     }
 
+    // MODIFIES: playlist, name, submit
+    // EFFECTS: removes the song according to the name typed into the field, sets name and submit
+    // to invisible
     private void removeSong() {
         String tempName = name.getText();
         playlist.removeFromQueue(tempName);
