@@ -4,13 +4,13 @@
     "queue": [
         {
             "duration": 120,
-            "artist": "artist",
-            "name": "name"
+            "artist": "lyn",
+            "name": "life will change"
         },
         {
             "duration": 240,
-            "artist": "artist",
-            "name": "life will change"
+            "artist": "toby fox",
+            "name": "home"
         }
     ]
 }

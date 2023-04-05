@@ -24,3 +24,9 @@
 - You can locate my visual component as soon as the program is run; a splash screen with a loading bar is displayed with the logo of the music player and a welcome message.
 - You can save the state of my application by pressing the "Save" button.
 - You can reload the state of my application by closing the window, and pressing the "Load" button after rerunning it.
+
+***Phase 4, Task 2:***
+- Tue Apr 04 17:25:27 PDT 2023; Song life will change was added to the queue. 
+- Tue Apr 04 17:25:46 PDT 2023; Song home was added to the queue. 
+- Tue Apr 04 17:25:50 PDT 2023; Queue was viewed. 
+- Tue Apr 04 17:25:53 PDT 2023; Saved Untitled to ./data/queue.json

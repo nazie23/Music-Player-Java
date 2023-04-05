@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Queue;
 import model.Song;
 import persistence.JsonReader;
@@ -8,13 +10,12 @@ import persistence.JsonWriter;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Frame extends JFrame implements ActionListener {
+public class Frame extends JFrame implements ActionListener, WindowListener {
     private JLabel title;
     private JLabel currentSong;
     private Border border = BorderFactory.createLineBorder(Color.black, 1);
@@ -99,6 +100,7 @@ public class Frame extends JFrame implements ActionListener {
         this.setSize(500, 400);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(new Color(235, 228, 199));
+        this.addWindowListener(this);
     }
 
     // MODIFIES: addSong
@@ -296,6 +298,7 @@ public class Frame extends JFrame implements ActionListener {
         artist.setVisible(false);
         duration.setVisible(false);
         submit.setVisible(false);
+        EventLog.getInstance().logEvent(new Event("Song " + tempName + " was added to the queue."));
         displayCurrentSong();
     }
 
@@ -316,6 +319,7 @@ public class Frame extends JFrame implements ActionListener {
         playlist.removeFromQueue(tempName);
         name.setVisible(false);
         submit.setVisible(false);
+        EventLog.getInstance().logEvent(new Event("Song " + tempName + " was removed to the queue."));
         displayCurrentSong();
     }
 
@@ -324,24 +328,63 @@ public class Frame extends JFrame implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(playlist);
             jsonWriter.close();
-            System.out.println("Saved " + playlist.getName() + " to " + JSON_STORE);
+            EventLog.getInstance().logEvent(new Event("Saved " + playlist.getName() + " to " + JSON_STORE));
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            EventLog.getInstance().logEvent(new Event("Unable to write to file: " + JSON_STORE));
         }
     }
 
     private void loadQueue() {
         try {
             playlist = jsonReader.read();
-            System.out.println("Loaded " + playlist.getName() + " from " + JSON_STORE);
+            EventLog.getInstance().logEvent(new Event("Loaded " + playlist.getName() + " from " + JSON_STORE));
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            EventLog.getInstance().logEvent(new Event("Unable to read from file: " + JSON_STORE));
+
         }
         displayCurrentSong();
     }
 
     private void viewQueue() {
         viewQueueScreen = new ViewQueueScreen(playlist);
+        EventLog.getInstance().logEvent(new Event("Queue was viewed."));
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        //
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event);
+        }
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        //
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        //
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        //
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        //
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        //
     }
 
 }
