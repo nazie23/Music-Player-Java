@@ -11,6 +11,11 @@
             "duration": 240,
             "artist": "toby fox",
             "name": "home"
+        },
+        {
+            "duration": 120,
+            "artist": "artist",
+            "name": "name"
         }
     ]
 }

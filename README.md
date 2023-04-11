@@ -30,3 +30,14 @@
 - Tue Apr 04 17:25:46 PDT 2023; Song home was added to the queue. 
 - Tue Apr 04 17:25:50 PDT 2023; Queue was viewed. 
 - Tue Apr 04 17:25:53 PDT 2023; Saved Untitled to ./data/queue.json
+
+***Phase 4, Task 3:***
+
+If I had more time to work on my project, the refactoring I would 
+want to perform is re-hauling the Queue and Song class into a
+Composite Design Pattern, where the Component would be an "addable
+item" that can be added to the queue. The Composite class would be
+Playlist and the leaf would be the Song class. The reason for this
+is that users would now be able to add whole playlists to their current
+playlist, therefore being basically able to add multiple songs at one
+time to their queue.
